@@ -2,20 +2,36 @@ module.exports = {
     converterPorExtenso: converterPorExtenso
 };
 
+function converteDe1a99(argAsInt) {
+    if (argAsInt < 20 && argAsInt > 10) {
+        return tabelaDeOnzeADezenove[argAsInt];
+    } else if (argAsInt < 10) {
+        return tabelaDeUnidades[argAsInt];
+    } else if (argAsInt === 10) {
+        return 'dez';
+    } else if (argAsInt % 10 == 0 && argAsInt < 100) {
+        return tabelaDeDezenas[argAsInt];
+    } else if (argAsInt > 20 && argAsInt < 100) {
+        return `${tabelaDeDezenas[Math.floor(argAsInt/10)*10]} e ${tabelaDeUnidades[argAsInt%10]}` ;
+    }
+    return null;
+}
+
 function converterPorExtenso(args) {
-    // if( args == '1'){
-    //     return 'um';
-    // } else if(args == '10'){
-    //     return 'dez';
-    // } else if(args == '2'){
-    //     return 'dez';
-    // } else if(args == '10'){
-    //     return 'dez';
-    // }
-    if (parseInt(args, 10) < 20 && parseInt(args, 10) > 10) {
-        return tabelaDeOnzeADezenove[args];
-    } else if (parseInt(args, 10) < 10) {
-        return tabelaDeUnidades[args];
+    var argAsInt = parseInt(args, 10);
+    if (argAsInt < 100) {
+        return converteDe1a99(argAsInt)
+    }
+    if (argAsInt % 100 == 0) {
+        return tabelaDeCentenas[argAsInt];
+    } else {
+        if (argAsInt < 200) {
+            if (argAsInt < 110) {
+                return `cento e ${tabelaDeUnidades[argAsInt%10]}`;
+            }
+            return `cento e ${converteDe1a99(argAsInt%100)}`
+        }
+        return `${tabelaDeCentenas[Math.floor(argAsInt/100)*100]} e ${converteDe1a99(argAsInt%100)}`;
     }
 }
 
@@ -30,7 +46,7 @@ var tabelaDeUnidades = {
     '7': 'sete',
     '8': 'oito',
     '9': 'nove',
-}
+};
 
 var tabelaDeOnzeADezenove = {
     '11': 'onze',
@@ -54,5 +70,17 @@ var tabelaDeDezenas = {
     '70': 'setenta',
     '80': 'oitenta',
     '90': 'noventa'
+};
+
+var tabelaDeCentenas = {
+    '100': 'cem',
+    '200': 'duzentos',
+    '300': 'trezentos',
+    '400': 'quatrocentos',
+    '500': 'quinhentos',
+    '600': 'seiscentos',
+    '700': 'setecentos',
+    '800': 'oitocentos',
+    '900': 'novecentos'
 };
 

@@ -1,0 +1,20 @@
+{
+  "name": "dojo",
+  "version": "1.0.0",
+  "description": "funcionalidade de transformar float em formato de cheque (numero por extenso)",
+  "main": "index.js",
+  "dependencies": {
+    "expect": "^25.1.0",
+    "mocha": "^7.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha *.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git status"
+  },
+  "author": "",
+  "license": "ISC"
+}
